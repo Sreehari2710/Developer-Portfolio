@@ -1,0 +1,13 @@
+import { ReactNode } from "react";
+
+export function GlassPanel({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`glass-panel rounded-2xl ${className}`}>{children}</div>
+  );
+}

@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+:root {
+  --bg-void: #05060a;
+  --bg-deep: #0a0e1a;
+  --purple-glow: #a855f7;
+  --purple-deep: #6d28d9;
+  --blue-glow: #38bdf8;
+  --blue-deep: #1d4ed8;
+  --foreground: #e8eaf2;
+  --muted: #8b92a8;
+  --line: rgba(168, 85, 247, 0.18);
+}
+
+@theme inline {
+  --color-void: var(--bg-void);
+  --color-deep: var(--bg-deep);
+  --color-purple-glow: var(--purple-glow);
+  --color-purple-deep: var(--purple-deep);
+  --color-blue-glow: var(--blue-glow);
+  --color-blue-deep: var(--blue-deep);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --font-pixel: var(--font-press-start);
+  --font-blocky: var(--font-minecraft);
+  --font-display: var(--font-sora);
+  --font-body: var(--font-inter);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background: var(--bg-void);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--purple-glow);
+  color: #05060a;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--purple-deep), var(--blue-deep));
+  border-radius: 8px;
+}
+
+/* ---------- Typography ---------- */
+.font-pixel {
+  font-family: var(--font-press-start), monospace;
+}
+.font-blocky {
+  font-family: var(--font-minecraft), monospace;
+}
+.font-display {
+  font-family: var(--font-sora), sans-serif;
+}
+
+/* ---------- Glass / panel system ---------- */
+.glass-panel {
+  background: rgba(15, 17, 28, 0.55);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, 0.08) inset,
+    0 20px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px -5px var(--purple-glow), 0 0 80px -20px var(--purple-deep);
+}
+
+.glow-blue {
+  box-shadow: 0 0 30px -5px var(--blue-glow), 0 0 80px -20px var(--blue-deep);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 18px rgba(168, 85, 247, 0.65), 0 0 40px rgba(168, 85, 247, 0.35);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 18px rgba(56, 189, 248, 0.65), 0 0 40px rgba(56, 189, 248, 0.35);
+}
+
+/* ---------- Section label (B1, B2...) ---------- */
+.section-label {
+  font-family: var(--font-press-start), monospace;
+  letter-spacing: 0.15em;
+  color: var(--purple-glow);
+  font-size: 0.7rem;
+}
+
+/* ---------- Voxel border (pixelated frame) ---------- */
+.voxel-border {
+  clip-path: polygon(
+    0 8px, 8px 8px, 8px 0, calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
+    8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+  );
+}
+
+/* ---------- Fog layer ---------- */
+.fog-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(5, 6, 10, 0.95), transparent 60%);
+}
+
+/* ---------- Glow button ---------- */
+.btn-glow {
+  position: relative;
+  font-family: var(--font-sora), sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-glow:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.85; }
+  50% { opacity: 0.6; }
+  55% { opacity: 0.9; }
+}
+.animate-flicker {
+  animation: flicker 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes travel-from-left {
+  0% { left: -4%; opacity: 0; }
+  10% { opacity: 1; }
+  45% { left: 47%; opacity: 1; }
+  60% { opacity: 0; }
+  100% { left: 47%; opacity: 0; }
+}
+@keyframes travel-from-right {
+  0% { right: -4%; opacity: 0; }
+  10% { opacity: 1; }
+  45% { right: 47%; opacity: 1; }
+  60% { opacity: 0; }
+  100% { right: 47%; opacity: 0; }
+}
+.animate-travel-left-once {
+  animation: travel-from-left 2.2s ease-in-out 1 forwards;
+}
+.animate-travel-right-once {
+  animation: travel-from-right 2.2s ease-in-out 1 forwards;
+  animation-delay: 0.1s;
+}
