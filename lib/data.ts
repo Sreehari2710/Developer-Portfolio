@@ -134,3 +134,47 @@ export const aboutStats: AboutStat[] = [
   },
   { icon: "base", label: "Base", value: "Malappuram, Kerala", color: "#f0a868" },
 ];
+
+export type Skill = {
+  name: string;
+  level: number;
+  color: string;
+  xpColor: string;
+  icon: string;
+};
+
+export type SkillPanel = {
+  title: string;
+  skills: Skill[];
+  cols?: 1 | 2;
+};
+
+export const skillPanels: SkillPanel[] = [
+  {
+    title: "FRONTEND",
+    skills: [
+      { name: "React", level: 5, color: "#61DAFB", xpColor: "#4ade80", icon: "react" },
+      { name: "Next.js", level: 5, color: "#FFFFFF", xpColor: "#4ade80", icon: "nextjs" },
+      { name: "TypeScript", level: 4, color: "#3B82F6", xpColor: "#4ade80", icon: "typescript" },
+      { name: "Tailwind CSS", level: 5, color: "#38BDF8", xpColor: "#4ade80", icon: "tailwind" },
+    ],
+  },
+  {
+    title: "BACKEND",
+    skills: [
+      { name: "Node.js", level: 5, color: "#3FCF6F", xpColor: "#a855f7", icon: "nodejs" },
+      { name: "PostgreSQL", level: 4, color: "#A78BFA", xpColor: "#3b82f6", icon: "postgresql" },
+      { name: "Prisma", level: 4, color: "#4dd0c4", xpColor: "#06b6d4", icon: "prisma" },
+      { name: "REST APIs", level: 5, color: "#60a5fa", xpColor: "#60a5fa", icon: "api" },
+    ],
+  },
+  {
+    title: "TOOLS & MAGIC",
+    skills: [
+      { name: "GitHub", level: 5, color: "#FFFFFF", xpColor: "#c084fc", icon: "github" },
+      { name: "Google Analytics", level: 3, color: "#f97316", xpColor: "#c084fc", icon: "analytics" },
+      { name: "Search Console", level: 3, color: "#3b82f6", xpColor: "#c084fc", icon: "searchconsole" },
+      { name: "SEO", level: 4, color: "#4ade80", xpColor: "#c084fc", icon: "seo" },
+    ],
+  },
+];

@@ -7,7 +7,7 @@ import { GlowButton } from "@/components/ui/GlowButton";
 
 const links = [
   { label: "About", href: "/#about" },
-  { label: "Skills", href: "#blocks" },
+  { label: "Skills", href: "/#skills" },
   { label: "Projects", href: "#worlds" },
   { label: "Experience", href: "#cave" },
   { label: "Contact", href: "#mission" },
@@ -31,7 +31,7 @@ export function NavBar() {
         scrolled ? "bg-void border-b border-white/10" : "bg-transparent"
       }`}
     >
-      <div className="flex items-center gap-3">
+      <a href="/" className="flex items-center gap-3">
         <Image
           src="/icon1.png"
           alt="Sreehari T"
@@ -42,7 +42,7 @@ export function NavBar() {
         <span className="font-blocky text-sm md:text-lg text-foreground tracking-wide">
           SREEHARI T
         </span>
-      </div>
+      </a>
       <div className="flex items-center gap-8">
         <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-foreground/90 uppercase">
           {links.map((l) => (
