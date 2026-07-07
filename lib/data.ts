@@ -26,6 +26,7 @@ export type Project = {
   id: string;
   title: string;
   worldName: string;
+  realm: string;
   description: string;
   tags: string[];
   href?: string;
@@ -38,9 +39,11 @@ export const projects: Project[] = [
     id: "crm",
     title: "CRM Dashboard",
     worldName: "Outreach Pro World",
+    realm: "OVERWORLD",
     description:
-      "A Minecraft village transformed into a business automation city — lead management, campaign tracking, and bulk email dispatch.",
+      "A powerful CRM dashboard to manage leads, track interactions, run campaigns and close more deals with bulk email dispatch.",
     tags: ["Next.js", "PostgreSQL", "Prisma"],
+    href: "https://github.com/Sreehari2710/Vuducom-Outreach",
     palette: ["#1f3d2b", "#3fcf6f"],
     glow: "#3fcf6f",
   },
@@ -48,8 +51,9 @@ export const projects: Project[] = [
     id: "instagram",
     title: "Instagram Automation",
     worldName: "Messenger Tower World",
+    realm: "AUTOMATION REALM",
     description:
-      "Magical communication towers and messenger birds — automated DM and comment outreach replacing manual creator engagement.",
+      "Automate Instagram engagement, messaging and comment outreach workflows with smart scheduling and background jobs.",
     tags: ["Node.js", "SMTP/IMAP", "Background Jobs"],
     palette: ["#3d1f3d", "#c084fc"],
     glow: "#c084fc",
@@ -58,9 +62,11 @@ export const projects: Project[] = [
     id: "analytics",
     title: "Reels Analytics Dashboard",
     worldName: "Crystal Mountain World",
+    realm: "DATA REALM",
     description:
-      "Crystal mountains with glowing data streams — automated creator research and engagement reporting for campaign managers.",
+      "Real-time analytics dashboard with automated creator research, engagement tracking and actionable campaign reports.",
     tags: ["React", "Data Pipelines", "Reporting"],
+    href: "https://github.com/Sreehari2710/instagram-reels-scraper",
     palette: ["#1f2d3d", "#60a5fa"],
     glow: "#60a5fa",
   },
@@ -68,12 +74,41 @@ export const projects: Project[] = [
     id: "pathora",
     title: "Pathora — AI Travel Planner",
     worldName: "Floating Isles World",
+    realm: "AI REALM",
     description:
-      "Floating islands connected by magical routes — AI-generated itineraries with live maps and real-time sync.",
+      "AI-generated travel itineraries with live maps, real-time sync and smart route planning across floating destination islands.",
     tags: ["Next.js", "Supabase", "Gemini AI"],
     href: "https://pathora.netlify.app/",
     palette: ["#2d1f3d", "#a78bfa"],
     glow: "#a78bfa",
+  },
+];
+
+export type Experience = {
+  company: string;
+  role: string;
+  duration: string;
+  summary: string;
+  bullets: string[];
+  tags: string[];
+};
+
+export const experiences: Experience[] = [
+  {
+    company: "Vuducom",
+    role: "Full Stack Developer",
+    duration: "Aug 2025 – Present",
+    summary:
+      "Shipping production-grade web apps and automation tools across the full stack in a fast-moving startup environment.",
+    bullets: [
+      "Architected CRM platform with lead management, campaign tracking and bulk email dispatch",
+      "Built Instagram DM & Comment Automation replacing manual creator outreach with scheduled pipelines",
+      "Created Reels Analytics Dashboard automating creator research and engagement reporting",
+      "Integrated SMTP/IMAP for end-to-end email delivery, response tracking and campaign monitoring",
+      "Designed scalable background job pipelines and multi-tenant PostgreSQL backend with Prisma ORM",
+      "Developed CSV/Excel ingestion pipelines to parse and load lead data, eliminating manual entry",
+    ],
+    tags: ["Next.js", "Node.js", "PostgreSQL", "Prisma", "Playwright"],
   },
 ];
 
@@ -122,7 +157,7 @@ export const aboutStats: AboutStat[] = [
   {
     icon: "quest",
     label: "Current Quest",
-    value: "Full Stack Developer Intern @ Vuducom",
+    value: "Full Stack Developer @ Vuducom",
     color: "#7fd96b",
   },
   {

@@ -4,14 +4,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { GlowButton } from "@/components/ui/GlowButton";
 
 const links = [
   { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },
-  { label: "Projects", href: "#worlds" },
-  { label: "Experience", href: "#cave" },
-  { label: "Contact", href: "#mission" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export function NavBar() {
@@ -44,22 +43,13 @@ export function NavBar() {
           SREEHARI T
         </span>
       </Link>
-      <div className="flex items-center gap-8">
-        <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-foreground/90 uppercase">
-          {links.map((l) => (
-            <a key={l.label} href={l.href} className="hover:text-purple-glow transition-colors">
-              {l.label}
-            </a>
-          ))}
-        </nav>
-        <GlowButton
-          variant="ghost"
-          href="#mission"
-          className="!rounded-md !py-2 !px-5 text-xs font-semibold uppercase tracking-wide"
-        >
-          Let&apos;s Talk
-        </GlowButton>
-      </div>
+      <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-foreground/90 uppercase">
+        {links.map((l) => (
+          <a key={l.label} href={l.href} className="hover:text-purple-glow transition-colors">
+            {l.label}
+          </a>
+        ))}
+      </nav>
     </motion.header>
   );
 }
