@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { GlowSpot, Embers } from "@/components/ui/AmbientFX";
 import { experiences } from "@/lib/data";
 
 // Red = left frame border colour, Blue = right frame border colour
@@ -31,6 +32,15 @@ export function Experience() {
 
         {/* top fade */}
         <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+
+        {/* ambient: wall torches + corner lanterns flicker on independent timings */}
+        <GlowSpot left="30%" top="12%" size={110} color="rgba(239,68,68,0.55)" duration={2.1} />
+        <GlowSpot left="69.4%" top="10%" size={110} color="rgba(249,115,22,0.5)" duration={2.7} delay={0.3} />
+        <GlowSpot left="6.6%" top="91%" size={130} color="rgba(249,115,22,0.45)" duration={3.2} delay={0.6} />
+        <GlowSpot left="91%" top="90.5%" size={130} color="rgba(249,115,22,0.45)" duration={2.5} delay={1.1} />
+
+        {/* ambient: embers drifting up from the cave floor */}
+        <Embers left="10%" top="70%" width="80%" height="28%" color="#f97316" count={7} size={2.5} />
 
         {/* Section heading */}
         <motion.div

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ParticleField } from "@/components/ui/ParticleField";
 import { TechIconTile } from "@/components/ui/TechIconTile";
 import { heroTech, profile } from "@/lib/data";
@@ -10,11 +10,27 @@ import { heroTech, profile } from "@/lib/data";
 export function Hero() {
   const [scrolled, setScrolled] = useState(false);
 
+  // mouse parallax — background layer only, ±10px, spring-smoothed
+  const parallaxX = useMotionValue(0);
+  const parallaxY = useMotionValue(0);
+  const springX = useSpring(parallaxX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(parallaxY, { stiffness: 50, damping: 20 });
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+
+    const onMouseMove = (e: MouseEvent) => {
+      parallaxX.set((e.clientX / window.innerWidth - 0.5) * -20);
+      parallaxY.set((e.clientY / window.innerHeight - 0.5) * -14);
+    };
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousemove", onMouseMove);
+    };
+  }, [parallaxX, parallaxY]);
 
   return (
     <section className="relative h-[100vh] w-full overflow-hidden bg-void">
@@ -24,13 +40,19 @@ export function Hero() {
         transition={{ duration: 2.2, ease: "easeOut" }}
         className="absolute inset-0"
       >
-        <Image
-          src="/Hero.png"
-          alt="Minecraft-inspired fantasy landscape with a developer avatar overlooking a kingdom"
-          fill
-          priority
-          className="object-cover"
-        />
+        {/* oversized so the parallax shift never exposes an edge */}
+        <motion.div
+          className="absolute -inset-6"
+          style={{ x: springX, y: springY }}
+        >
+          <Image
+            src="/Hero.png"
+            alt="Minecraft-inspired fantasy landscape with a developer avatar overlooking a kingdom"
+            fill
+            priority
+            className="object-cover"
+          />
+        </motion.div>
       </motion.div>
 
       <ParticleField count={50} color="200, 170, 255" />

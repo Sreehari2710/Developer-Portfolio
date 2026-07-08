@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { PortalEnergy } from "@/components/ui/AmbientFX";
 import { projects, type Project } from "@/lib/data";
 
 function PortalContent({
@@ -122,6 +123,14 @@ const portalPositions: React.CSSProperties[] = [
   { left: "57%", top: "55%", width: "38%", height: "34%" },
 ];
 
+// glowing interiors of the four frames in project.png
+const portalFrames: React.CSSProperties[] = [
+  { left: "15.6%", top: "15.7%", width: "29.1%", height: "30.8%" },
+  { left: "55.8%", top: "15.7%", width: "29.1%", height: "31.4%" },
+  { left: "15%", top: "51.9%", width: "30%", height: "31.9%" },
+  { left: "56.1%", top: "51.9%", width: "29.1%", height: "31.4%" },
+];
+
 export function Projects() {
   return (
     <section id="projects" className="relative w-full bg-deep">
@@ -164,6 +173,16 @@ export function Projects() {
             <span className="h-px w-6 md:w-10 bg-green-400/50" />
           </div>
         </motion.div>
+
+        {/* ambient: slow energy swirl inside each portal frame */}
+        {projects.map((project, i) => (
+          <PortalEnergy
+            key={`energy-${project.id}`}
+            style={portalFrames[i]}
+            glow={project.glow}
+            duration={8 + i * 1.5}
+          />
+        ))}
 
         {/* Portal content overlays */}
         {projects.map((project, i) => (

@@ -61,8 +61,11 @@ function XpBar({
   filled?: number;
   animDelay?: number;
 }) {
+  // moment the last segment lands — the spark fires right after
+  const fillDone = animDelay + filled * 0.035 + 0.06;
+
   return (
-    <div className="flex gap-[1.5px] mt-[10px]">
+    <div className="relative flex gap-[1.5px] mt-[10px]">
       {Array.from({ length: segments }).map((_, i) => (
         <motion.div
           key={i}
@@ -82,6 +85,22 @@ function XpBar({
           }}
         />
       ))}
+      {/* level-up spark at the tip of the fill */}
+      <motion.span
+        className="absolute rounded-full pointer-events-none"
+        initial={{ opacity: 0, scale: 0.4 }}
+        whileInView={{ opacity: [0, 1, 0], scale: [0.4, 1.6, 0.6] }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: fillDone, times: [0, 0.35, 1] }}
+        style={{
+          left: `calc(${(filled / segments) * 100}% - 4px)`,
+          top: "-2.5px",
+          width: "8px",
+          height: "8px",
+          background: color,
+          boxShadow: `0 0 10px ${color}, 0 0 20px ${color}`,
+        }}
+      />
     </div>
   );
 }

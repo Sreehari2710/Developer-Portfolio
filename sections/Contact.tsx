@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { GlowSpot, Embers, LavaGlow } from "@/components/ui/AmbientFX";
 import { profile, missionStatement } from "@/lib/data";
 
 const LAVA   = "#f97316";
@@ -34,6 +35,20 @@ export function Contact() {
 
         {/* top fade */}
         <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-black/70 to-transparent pointer-events-none" />
+
+        {/* ambient: lava pools pulse on both edges */}
+        <LavaGlow style={{ left: "0%", top: "74%", width: "20%", height: "26%" }} duration={3.4} />
+        <LavaGlow style={{ left: "80%", top: "74%", width: "20%", height: "26%" }} duration={2.8} delay={0.9} />
+
+        {/* ambient: hanging lanterns + braziers flicker */}
+        <GlowSpot left="17.3%" top="45%" size={110} color="rgba(249,115,22,0.5)" duration={1.8} />
+        <GlowSpot left="82%" top="45.5%" size={110} color="rgba(249,115,22,0.5)" duration={2.3} delay={0.4} />
+        <GlowSpot left="25.4%" top="63.5%" size={90} color="rgba(249,115,22,0.4)" duration={2.6} delay={0.7} />
+        <GlowSpot left="74.6%" top="63.5%" size={90} color="rgba(249,115,22,0.4)" duration={2.1} delay={1.2} />
+
+        {/* ambient: embers rising off each lava pool */}
+        <Embers left="0%" top="66%" width="18%" height="32%" color="#f97316" count={6} size={2.5} />
+        <Embers left="82%" top="66%" width="18%" height="32%" color="#f97316" count={6} size={2.5} />
 
         {/* Section heading — top left */}
         <motion.div

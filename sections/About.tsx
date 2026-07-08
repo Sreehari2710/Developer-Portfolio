@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { AboutRow } from "@/components/ui/AboutRow";
+import { GlowSpot, Embers } from "@/components/ui/AmbientFX";
 import { aboutStats, profile } from "@/lib/data";
 
 export function About() {
@@ -31,6 +32,11 @@ export function About() {
 
         {/* top fade for heading legibility */}
         <div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+
+        {/* ambient: torchlight flicker over the stats panel + drifting dust */}
+        <GlowSpot left="57%" top="40%" size={340} color="rgba(77,208,196,0.16)" duration={4.2} />
+        <GlowSpot left="22%" top="35%" size={260} color="rgba(56,189,248,0.12)" duration={5.1} delay={0.8} />
+        <Embers left="8%" top="30%" width="84%" height="55%" color="#4dd0c4" count={5} size={2} />
 
         {/* heading overlay, on the image */}
         <div className="absolute" style={{ left: "5%", top: "4%" }}>
