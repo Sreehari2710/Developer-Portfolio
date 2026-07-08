@@ -177,11 +177,32 @@ function PanelContent({
   panel,
   style,
   baseDelay,
+  titleShiftPx,
+  rowsShiftPx,
+  rowsShiftXPx,
+  rowsCompact,
+  rowsScale,
+  hideDiamonds = false,
+  titleFontSize,
 }: {
   panel: SkillPanel;
   style: React.CSSProperties;
   baseDelay: number;
+  titleShiftPx?: number;
+  rowsShiftPx?: number;
+  rowsShiftXPx?: number;
+  rowsCompact?: boolean;
+  rowsScale?: number;
+  hideDiamonds?: boolean;
+  titleFontSize?: string;
 }) {
+  const rowsTransform = [
+    rowsShiftXPx ? `translateX(${rowsShiftXPx}px)` : "",
+    rowsShiftPx ? `translateY(${rowsShiftPx}px)` : "",
+    rowsScale ? `scale(${rowsScale})` : "",
+  ]
+    .filter(Boolean)
+    .join(" ") || undefined;
   const isTwoCol = panel.cols === 2;
 
   return (
@@ -193,27 +214,38 @@ function PanelContent({
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: baseDelay }}
         className="shrink-0 flex items-center justify-center gap-1"
-        style={{ height: "14%" }}
+        style={{
+          height: "14%",
+          transform: titleShiftPx ? `translateY(${titleShiftPx}px)` : undefined,
+        }}
       >
-        <span style={{ fontSize: "clamp(11px, 1vw, 15px)", color: "#a855f7", opacity: 0.7 }}>
-          ♦
-        </span>
+        {!hideDiamonds && (
+          <span style={{ fontSize: "clamp(11px, 1vw, 15px)", color: "#a855f7", opacity: 0.7 }}>
+            ♦
+          </span>
+        )}
         <span
           className="font-blocky tracking-widest"
-          style={{ fontSize: "clamp(10px, 1vw, 14px)", color: "#a855f7" }}
+          style={{ fontSize: titleFontSize || "clamp(10px, 1vw, 14px)", color: "#a855f7" }}
         >
           {panel.title}
         </span>
-        <span style={{ fontSize: "clamp(11px, 1vw, 15px)", color: "#a855f7", opacity: 0.7 }}>
-          ♦
-        </span>
+        {!hideDiamonds && (
+          <span style={{ fontSize: "clamp(11px, 1vw, 15px)", color: "#a855f7", opacity: 0.7 }}>
+            ♦
+          </span>
+        )}
       </motion.div>
 
       {/* Skill rows */}
       {isTwoCol ? (
         <div
           className="flex-1 grid grid-cols-2 gap-x-[4%] px-[4%] pb-[4%]"
-          style={{ gridAutoRows: "1fr" }}
+          style={{
+            gridAutoRows: "1fr",
+            transform: rowsTransform,
+            transformOrigin: "top left",
+          }}
         >
           {panel.skills.map((skill, i) => (
             <SkillRow
@@ -225,9 +257,17 @@ function PanelContent({
           ))}
         </div>
       ) : (
-        <div className="flex-1 flex flex-col justify-start gap-[20%] px-[6%] pt-[10%] pb-[4%]">
+        <div
+          className="flex-1 flex flex-col justify-start gap-[20%] px-[6%] pt-[10%] pb-[4%]"
+          style={{ transform: rowsTransform, transformOrigin: "top left" }}
+        >
           {panel.skills.map((skill, i) => (
-            <SkillRow key={skill.name} skill={skill} delay={baseDelay + i * 0.15} />
+            <SkillRow
+              key={skill.name}
+              skill={skill}
+              compact={rowsCompact}
+              delay={baseDelay + i * 0.15}
+            />
           ))}
         </div>
       )}
@@ -238,12 +278,13 @@ function PanelContent({
 export function Skills() {
   return (
     <section id="skills" className="relative w-full bg-deep">
+      {/* ---------- Desktop (unchanged) ---------- */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8 }}
-        className="relative w-full"
+        className="relative w-full hidden md:block"
         style={{ aspectRatio: "1700 / 925" }}
       >
         <Image
@@ -290,6 +331,81 @@ export function Skills() {
           panel={skillPanels[2]}
           style={{ left: "67%", top: "25%", width: "23.5%", height: "58%" }}
           baseDelay={0.3}
+        />
+      </motion.div>
+
+      {/* ---------- Mobile ---------- */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8 }}
+        className="relative w-full block md:hidden"
+        style={{ aspectRatio: "941 / 1672" }}
+      >
+        <Image
+          src="/skills-mobile2.png"
+          alt="Enchanting room skill board"
+          fill
+          className="object-cover pointer-events-none select-none"
+        />
+
+        {/* Top fade for heading legibility */}
+        <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-black/55 to-transparent pointer-events-none" />
+
+        {/* Section heading */}
+        <div className="absolute" style={{ left: "6%", top: "0%" }}>
+          <h2 className="font-blocky text-2xl text-glow-purple text-purple-glow tracking-wide">
+            03. SKILLS
+          </h2>
+          <div className="flex items-center gap-2 mt-1">
+            <span className="h-px w-6 bg-blue-glow/50" />
+            <span className="font-blocky text-[9px] text-blue-glow tracking-widest">
+              CHARACTER ATTRIBUTES
+            </span>
+            <span className="h-px w-6 bg-blue-glow/50" />
+          </div>
+        </div>
+
+        {/* Panel 1 — FRONTEND */}
+        <PanelContent
+          panel={skillPanels[0]}
+          style={{ left: "10%", top: "9%", width: "80%", height: "22.5%" }}
+          baseDelay={0.1}
+          titleShiftPx={12}
+          rowsShiftPx={2}
+          rowsShiftXPx={26}
+          rowsCompact
+          rowsScale={0.77}
+          hideDiamonds={true}
+          titleFontSize="clamp(8px, 0.9vw, 11px)"
+        />
+
+        {/* Panel 2 — BACKEND */}
+        <PanelContent
+          panel={skillPanels[1]}
+          style={{ left: "10%", top: "37.5%", width: "80%", height: "22.5%" }}
+          baseDelay={0.2}
+          rowsShiftPx={-12}
+          rowsShiftXPx={26}
+          rowsCompact
+          rowsScale={0.77}
+          hideDiamonds={true}
+          titleFontSize="clamp(8px, 0.9vw, 11px)"
+        />
+
+        {/* Panel 3 — TOOLS & MAGIC */}
+        <PanelContent
+          panel={skillPanels[2]}
+          style={{ left: "10%", top: "63.5%", width: "80%", height: "22.5%" }}
+          baseDelay={0.3}
+          titleShiftPx={0}
+          rowsShiftPx={-6}
+          rowsShiftXPx={26}
+          rowsCompact
+          rowsScale={0.77}
+          hideDiamonds={true}
+          titleFontSize="clamp(8px, 0.9vw, 11px)"
         />
       </motion.div>
     </section>

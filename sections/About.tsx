@@ -8,18 +8,40 @@ import { AboutRow } from "@/components/ui/AboutRow";
 import { GlowSpot, Embers } from "@/components/ui/AmbientFX";
 import { aboutStats, profile } from "@/lib/data";
 
+function AboutRowMobile({ stat }: { stat: (typeof aboutStats)[number] }) {
+  return (
+    <div
+      className="flex flex-col justify-center h-full"
+      style={{ paddingLeft: "19%", paddingRight: "4%" }}
+    >
+      <p
+        className="font-blocky text-[10.5px] tracking-wide leading-none"
+        style={{ color: stat.color }}
+      >
+        {stat.label}
+      </p>
+      <p className="font-blocky text-foreground text-[10.5px] leading-[1.35] mt-1">
+        {stat.value}
+      </p>
+    </div>
+  );
+}
+
 export function About() {
   const portalsRef = useRef<HTMLDivElement>(null);
   const portalsInView = useInView(portalsRef, { once: true, margin: "-100px" });
+  const portalsMobileRef = useRef<HTMLDivElement>(null);
+  const portalsMobileInView = useInView(portalsMobileRef, { once: true, margin: "-100px" });
 
   return (
     <section id="about" className="relative w-full bg-deep">
+      {/* ---------- Desktop (unchanged) ---------- */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8 }}
-        className="relative w-full"
+        className="relative w-full hidden md:block"
         style={{ aspectRatio: "1700 / 925" }}
       >
         <Image
@@ -126,6 +148,116 @@ export function About() {
           >
             <FaLinkedin size={20} />
             <span className="truncate">linkedin.com/in/sreeharit27</span>
+          </a>
+        </div>
+      </motion.div>
+
+      {/* ---------- Mobile ---------- */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8 }}
+        className="relative w-full block md:hidden"
+        style={{ aspectRatio: "941 / 1672" }}
+      >
+        <Image
+          src="/about-mobile.png"
+          alt="Player profile panel"
+          fill
+          className="object-cover pointer-events-none select-none"
+        />
+
+        {/* top fade for heading legibility */}
+        <div className="absolute inset-x-0 top-0 h-[12%] bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+
+        {/* ambient: torchlight flicker + drifting dust */}
+        <GlowSpot left="50%" top="30%" size={260} color="rgba(77,208,196,0.14)" duration={4.2} />
+        <Embers left="14%" top="50%" width="72%" height="34%" color="#4dd0c4" count={4} size={2} />
+
+        {/* heading overlay */}
+        <div className="absolute" style={{ left: "6%", top: "1%" }}>
+          <h2 className="font-blocky text-2xl text-glow-purple text-purple-glow tracking-wide">
+            02. ABOUT ME
+          </h2>
+          <div className="flex items-center gap-2 mt-2">
+            <span className="h-px w-6 bg-blue-glow/50" />
+            <span className="font-blocky text-[9px] text-blue-glow tracking-widest">
+              PLAYER PROFILE
+            </span>
+            <span className="h-px w-6 bg-blue-glow/50" />
+          </div>
+        </div>
+
+        {/* profile picture inside the landscape frame */}
+        <div
+          className="absolute"
+          style={{ left: "16%", top: "19%", width: "68%", height: "26%" }}
+        >
+          <Image
+            src="/profile.png"
+            alt="Sreehari T"
+            fill
+            className="object-contain object-bottom"
+          />
+        </div>
+
+        {/* stat rows inside the card */}
+        <div
+          className="absolute flex flex-col"
+          style={{ left: "13%", top: "48.5%", width: "74%", height: "33.5%" }}
+        >
+          {aboutStats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex-1 w-full"
+              style={{
+                transform: stat.icon === "quest" ? undefined : "translateY(6px)",
+              }}
+            >
+              <AboutRowMobile stat={stat} />
+            </div>
+          ))}
+        </div>
+
+        {/* portal links */}
+        <div
+          ref={portalsMobileRef}
+          className="absolute overflow-hidden"
+          style={{ left: "0%", top: "87.5%", width: "100%", height: "9.5%" }}
+        >
+          {portalsMobileInView && (
+            <>
+              <div
+                className="absolute top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-blue-glow blur-xl animate-travel-left-once pointer-events-none"
+                style={{ left: "-4%", boxShadow: "0 0 40px 10px rgba(56,189,248,0.8)" }}
+              />
+              <div
+                className="absolute top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-blue-glow blur-xl animate-travel-right-once pointer-events-none"
+                style={{ right: "-4%", boxShadow: "0 0 40px 10px rgba(56,189,248,0.8)" }}
+              />
+            </>
+          )}
+
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noreferrer"
+            className="absolute flex items-center justify-center gap-2 font-blocky text-foreground/90 hover:text-purple-glow transition-colors text-[13px]"
+            style={{ left: "21%", width: "28%", top: "10%", height: "80%" }}
+          >
+            <FaGithub size={19} />
+            <span className="truncate">GitHub</span>
+          </a>
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="absolute flex items-center justify-center gap-2 font-blocky text-foreground/90 hover:text-blue-glow transition-colors text-[13px]"
+            style={{ left: "51%", width: "28%", top: "10%", height: "80%" }}
+          >
+            <FaLinkedin size={19} />
+            <span className="truncate">LinkedIn</span>
           </a>
         </div>
       </motion.div>

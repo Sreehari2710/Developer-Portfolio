@@ -33,7 +33,7 @@ export function Hero() {
   }, [parallaxX, parallaxY]);
 
   return (
-    <section className="relative h-[100vh] w-full overflow-hidden bg-void">
+    <section className="hero-viewport relative w-full overflow-hidden bg-void">
       <motion.div
         initial={{ opacity: 0, scale: 1.08 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -50,7 +50,14 @@ export function Hero() {
             alt="Minecraft-inspired fantasy landscape with a developer avatar overlooking a kingdom"
             fill
             priority
-            className="object-cover"
+            className="object-cover hidden md:block"
+          />
+          <Image
+            src="/Hero-mobile.png"
+            alt="Minecraft-inspired fantasy landscape with a developer avatar overlooking a kingdom"
+            fill
+            priority
+            className="object-cover block md:hidden"
           />
         </motion.div>
       </motion.div>
@@ -68,7 +75,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="absolute left-6 md:left-16 top-[52%] -translate-y-1/2 max-w-xl"
+          className="absolute left-6 md:left-16 top-[42%] md:top-[52%] -translate-y-1/2 max-w-xl"
         >
           <p className="text-foreground/90 text-base md:text-lg mb-2">Hi, I&apos;m</p>
           <h1 className="font-blocky text-6xl md:text-7xl font-bold leading-[1.15] text-white tracking-wide">

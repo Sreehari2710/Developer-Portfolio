@@ -110,6 +110,15 @@ body {
   );
 }
 
+/* ---------- Hero viewport height ---------- */
+/* svh is a fixed "smallest possible" viewport height, so it never has to
+   recalculate when the mobile browser's address bar collapses — avoids the
+   gap that appears before the first scroll with dvh/vh on some browsers. */
+.hero-viewport {
+  height: 100vh;
+  height: 100svh;
+}
+
 /* ---------- Fog layer ---------- */
 .fog-layer {
   position: absolute;
