@@ -19,11 +19,11 @@ function PortalContent({
   // vw-based sizes on mobile so text scales with the art on every phone width
   const fs = mobile
     ? {
-        realm: "clamp(6px, 1.7vw, 9px)",
-        title: "clamp(10px, 3vw, 14px)",
-        desc: "clamp(6px, 1.8vw, 9px)",
-        btn: "clamp(8px, 2.3vw, 11px)",
-        descWidth: "92%",
+        realm: "clamp(5px, 1.5vw, 8px)",
+        title: "clamp(9px, 2.7vw, 13px)",
+        desc: "clamp(5px, 1.55vw, 8px)",
+        btn: "clamp(7px, 2.1vw, 10px)",
+        descWidth: "100%",
         realmRowHeight: "10%",
       }
     : {
@@ -158,10 +158,10 @@ const portalFrames: React.CSSProperties[] = [
 
 // content boxes inside the 4 stacked frames of project-mobile.png
 const portalPositionsMobile: React.CSSProperties[] = [
-  { left: "22%", top: "7%", width: "56%", height: "16.5%" },
-  { left: "22%", top: "30%", width: "56%", height: "16.5%" },
-  { left: "22%", top: "53%", width: "56%", height: "16.5%" },
-  { left: "22%", top: "75.5%", width: "56%", height: "16.5%" },
+  { left: "20.5%", top: "7%", width: "59%", height: "16.5%" },
+  { left: "20.5%", top: "30%", width: "59%", height: "16.5%" },
+  { left: "20.5%", top: "53%", width: "59%", height: "16.5%" },
+  { left: "20.5%", top: "75.5%", width: "59%", height: "16.5%" },
 ];
 
 // glowing interiors of the 4 frames (for the energy swirl)

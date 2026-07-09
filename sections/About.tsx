@@ -63,9 +63,8 @@ export function About() {
         <GlowSpot left="22%" top="35%" size={260} color="rgba(56,189,248,0.12)" duration={5.1} delay={0.8} />
         <Embers left="8%" top="30%" width="84%" height="55%" color="#4dd0c4" count={5} size={2} />
 
-        {/* ambient: garden lanterns flicker on both sides */}
+        {/* ambient: garden lantern flickers on the left */}
         <GlowSpot left="5%" top="49%" size={95} color="rgba(249,180,80,0.5)" duration={2.4} />
-        <GlowSpot left="83.5%" top="49.5%" size={95} color="rgba(249,180,80,0.5)" duration={3.1} delay={0.7} />
 
         {/* ambient: portal crystals breathe — purple left, blue right */}
         <GlowSpot left="11.2%" top="84.5%" size={110} color="rgba(168,85,247,0.5)" duration={3.8} anim="pulse" />

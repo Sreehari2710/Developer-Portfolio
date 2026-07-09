@@ -333,9 +333,8 @@ export function Skills() {
         <LightRay left="92.3%" bottom="26%" height="43%" width={44} color="rgba(56,189,248,0.5)" duration={4.4} delay={1.3} />
         <GlowSpot left="92.3%" top="72%" size={120} color="rgba(56,189,248,0.4)" duration={4.4} delay={1.3} anim="pulse" />
 
-        {/* ambient: bookshelf candles flicker */}
+        {/* ambient: bookshelf candle flickers */}
         <GlowSpot left="2.9%" top="43%" size={70} color="rgba(249,180,80,0.45)" duration={2.2} />
-        <GlowSpot left="84.7%" top="43%" size={70} color="rgba(249,180,80,0.45)" duration={2.8} delay={0.5} />
 
         {/* ambient: XP-bar gems breathe */}
         <GlowSpot left="16.9%" top="90%" size={50} color="rgba(168,85,247,0.55)" duration={3.2} anim="pulse" />
@@ -414,43 +413,43 @@ export function Skills() {
         {/* Panel 1 — FRONTEND */}
         <PanelContent
           panel={skillPanels[0]}
-          style={{ left: "10%", top: "10.5%", width: "80%", height: "22.5%" }}
+          style={{ left: "10%", top: "9%", width: "80%", height: "22.5%" }}
           baseDelay={0.1}
           titleShiftPx="3.3vw"
           rowsShiftPx="-1.7vw"
           rowsShiftXPx="7.2vw"
           rowsCompact
-          rowsScale={0.86}
+          rowsScale={0.8}
           hideDiamonds={true}
-          titleFontSize="clamp(8px, 2.5vw, 12px)"
+          titleFontSize="clamp(7px, 2.3vw, 11px)"
         />
 
         {/* Panel 2 — BACKEND */}
         <PanelContent
           panel={skillPanels[1]}
-          style={{ left: "10%", top: "39%", width: "80%", height: "22.5%" }}
+          style={{ left: "10%", top: "37.5%", width: "80%", height: "22.5%" }}
           baseDelay={0.2}
           titleShiftPx="3.3vw"
           rowsShiftPx="-1.7vw"
           rowsShiftXPx="7.2vw"
           rowsCompact
-          rowsScale={0.86}
+          rowsScale={0.8}
           hideDiamonds={true}
-          titleFontSize="clamp(8px, 2.5vw, 12px)"
+          titleFontSize="clamp(7px, 2.3vw, 11px)"
         />
 
         {/* Panel 3 — TOOLS & MAGIC */}
         <PanelContent
           panel={skillPanels[2]}
-          style={{ left: "10%", top: "63.5%", width: "80%", height: "22.5%" }}
+          style={{ left: "10%", top: "62%", width: "80%", height: "22.5%" }}
           baseDelay={0.3}
           titleShiftPx="3.3vw"
           rowsShiftPx="-1.7vw"
           rowsShiftXPx="7.2vw"
           rowsCompact
-          rowsScale={0.86}
+          rowsScale={0.8}
           hideDiamonds={true}
-          titleFontSize="clamp(8px, 2.5vw, 12px)"
+          titleFontSize="clamp(7px, 2.3vw, 11px)"
         />
       </motion.div>
     </section>
