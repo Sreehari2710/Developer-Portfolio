@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { GlowSpot, Embers, LavaGlow } from "@/components/ui/AmbientFX";
+import { GlowSpot, Embers, LavaGlow, LightRay } from "@/components/ui/AmbientFX";
 import { profile, missionStatement } from "@/lib/data";
 
 const LAVA   = "#f97316";
@@ -50,6 +50,15 @@ export function Contact() {
         {/* ambient: embers rising off each lava pool */}
         <Embers left="0%" top="66%" width="18%" height="32%" color="#f97316" count={6} size={2.5} />
         <Embers left="82%" top="66%" width="18%" height="32%" color="#f97316" count={6} size={2.5} />
+
+        {/* ambient: molten seams in the pillars glow upward */}
+        <LightRay left="8.6%" bottom="47%" height="27%" width={22} color="rgba(249,115,22,0.55)" duration={4.6} />
+        <LightRay left="26.5%" bottom="45%" height="21%" width={20} color="rgba(249,115,22,0.5)" duration={5.4} delay={1.4} />
+        <LightRay left="73.4%" bottom="45%" height="23%" width={20} color="rgba(249,115,22,0.5)" duration={4.1} delay={0.7} />
+        <LightRay left="91.3%" bottom="47%" height="32%" width={22} color="rgba(249,115,22,0.55)" duration={5} delay={2.1} />
+
+        {/* ambient: distant molten valley breathes through the archway */}
+        <GlowSpot left="50%" top="55%" size={420} color="rgba(239,68,68,0.16)" duration={6.5} anim="pulse" />
 
         {/* Section heading — top left */}
         <motion.div
@@ -214,7 +223,7 @@ export function Contact() {
         {/* Centered content inside the archway */}
         <div
           className="absolute flex flex-col items-center"
-          style={{ left: "15%", top: "26%", width: "70%", gap: "0" }}
+          style={{ left: "15%", top: "29%", width: "70%", gap: "0" }}
         >
           {/* Mission lines */}
           {missionStatement.lines.map((line, i) => (

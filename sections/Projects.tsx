@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { PortalEnergy } from "@/components/ui/AmbientFX";
+import { PortalEnergy, GlowSpot, LavaGlow, Embers } from "@/components/ui/AmbientFX";
 import { projects, type Project } from "@/lib/data";
 
 function PortalContent({
@@ -19,11 +19,12 @@ function PortalContent({
   // vw-based sizes on mobile so text scales with the art on every phone width
   const fs = mobile
     ? {
-        realm: "clamp(7px, 1.9vw, 10px)",
-        title: "clamp(11px, 3.6vw, 17px)",
-        desc: "clamp(7px, 2.1vw, 11px)",
-        btn: "clamp(9px, 2.6vw, 13px)",
-        descWidth: "90%",
+        realm: "clamp(6px, 1.7vw, 9px)",
+        title: "clamp(10px, 3vw, 14px)",
+        desc: "clamp(6px, 1.8vw, 9px)",
+        btn: "clamp(8px, 2.3vw, 11px)",
+        descWidth: "92%",
+        realmRowHeight: "10%",
       }
     : {
         realm: "clamp(5px, 0.45vw, 7px)",
@@ -31,6 +32,7 @@ function PortalContent({
         desc: "clamp(5px, 0.5vw, 8px)",
         btn: "clamp(7px, 0.7vw, 11px)",
         descWidth: "70%",
+        realmRowHeight: "16%",
       };
 
   return (
@@ -43,7 +45,7 @@ function PortalContent({
       style={style}
     >
       {/* Realm label */}
-      <div className="flex items-center gap-[4px] px-[3%]" style={{ height: "16%" }}>
+      <div className="flex items-center gap-[4px] px-[3%]" style={{ height: fs.realmRowHeight }}>
         <span
           style={{
             color: project.glow,
@@ -192,6 +194,21 @@ export function Projects() {
 
         {/* top fade for heading legibility */}
         <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+
+        {/* ambient: wall torches + hanging lantern flicker */}
+        <GlowSpot left="5.9%" top="43%" size={95} color="rgba(249,150,60,0.5)" duration={2.3} />
+        <GlowSpot left="94.5%" top="43%" size={95} color="rgba(249,150,60,0.5)" duration={2.9} delay={0.6} />
+        <GlowSpot left="49.7%" top="49%" size={70} color="rgba(249,150,60,0.45)" duration={2.1} delay={1} />
+
+        {/* ambient: fire braziers on the side ledges */}
+        <GlowSpot left="2.6%" top="66.5%" size={130} color="rgba(249,115,22,0.5)" duration={1.9} delay={0.2} />
+        <GlowSpot left="97.4%" top="66%" size={130} color="rgba(249,115,22,0.5)" duration={2.5} delay={0.9} />
+
+        {/* ambient: lava rivers on the floor pulse + embers rise near the fires */}
+        <LavaGlow style={{ left: "10%", top: "88%", width: "32%", height: "12%" }} duration={3.6} />
+        <LavaGlow style={{ left: "58%", top: "88%", width: "32%", height: "12%" }} duration={3} delay={1.2} />
+        <Embers left="0%" top="52%" width="9%" height="38%" color="#f97316" count={4} size={2.5} />
+        <Embers left="91%" top="52%" width="9%" height="38%" color="#f97316" count={4} size={2.5} />
 
         {/* Section heading */}
         <motion.div

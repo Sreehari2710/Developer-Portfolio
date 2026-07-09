@@ -23,7 +23,21 @@ import { TbApi } from "react-icons/tb";
 import { BsStars } from "react-icons/bs";
 import { MdSearch } from "react-icons/md";
 import type { IconType } from "react-icons";
+import { GlowSpot, LightRay } from "@/components/ui/AmbientFX";
 import { skillPanels, type Skill, type SkillPanel } from "@/lib/data";
+
+// floating enchantment runes baked into skills.png that pulse with light
+const runeSpots = [
+  { left: "24%", top: "4%", d: 3.8, delay: 0 },
+  { left: "41%", top: "10.5%", d: 4.6, delay: 1.2 },
+  { left: "55.5%", top: "13%", d: 3.4, delay: 0.6 },
+  { left: "74.5%", top: "9%", d: 5.1, delay: 2.1 },
+  { left: "11.8%", top: "7%", d: 4.2, delay: 1.7 },
+  { left: "85.6%", top: "15%", d: 3.9, delay: 0.3 },
+  { left: "28.6%", top: "82.5%", d: 4.4, delay: 0.9 },
+  { left: "64%", top: "82%", d: 3.6, delay: 2.4 },
+  { left: "75%", top: "83%", d: 4.9, delay: 1.5 },
+];
 
 const levelXpColor: Record<number, string> = {
   5: "#4ade80",  // green  — mastered
@@ -299,6 +313,35 @@ export function Skills() {
         {/* Top fade for heading legibility */}
         <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-black/55 to-transparent pointer-events-none" />
 
+        {/* ambient: enchantment runes on the wall pulse with light */}
+        {runeSpots.map((r, i) => (
+          <GlowSpot
+            key={i}
+            left={r.left}
+            top={r.top}
+            size={34}
+            color="rgba(167,139,250,0.55)"
+            duration={r.d}
+            delay={r.delay}
+            anim="pulse"
+          />
+        ))}
+
+        {/* ambient: crystal clusters cast rays upward — violet left, blue right */}
+        <LightRay left="4.5%" bottom="28%" height="40%" width={44} color="rgba(168,85,247,0.5)" duration={5.2} />
+        <GlowSpot left="4.5%" top="70%" size={120} color="rgba(168,85,247,0.4)" duration={5.2} anim="pulse" />
+        <LightRay left="92.3%" bottom="26%" height="43%" width={44} color="rgba(56,189,248,0.5)" duration={4.4} delay={1.3} />
+        <GlowSpot left="92.3%" top="72%" size={120} color="rgba(56,189,248,0.4)" duration={4.4} delay={1.3} anim="pulse" />
+
+        {/* ambient: bookshelf candles flicker */}
+        <GlowSpot left="2.9%" top="43%" size={70} color="rgba(249,180,80,0.45)" duration={2.2} />
+        <GlowSpot left="84.7%" top="43%" size={70} color="rgba(249,180,80,0.45)" duration={2.8} delay={0.5} />
+
+        {/* ambient: XP-bar gems breathe */}
+        <GlowSpot left="16.9%" top="90%" size={50} color="rgba(168,85,247,0.55)" duration={3.2} anim="pulse" />
+        <GlowSpot left="49.8%" top="90%" size={50} color="rgba(74,222,128,0.55)" duration={3.2} delay={1.1} anim="pulse" />
+        <GlowSpot left="83.5%" top="90%" size={50} color="rgba(56,189,248,0.55)" duration={3.2} delay={2.2} anim="pulse" />
+
         {/* Section heading */}
         <div className="absolute" style={{ left: "5%", top: "3.5%" }}>
           <h2 className="font-blocky text-xl md:text-3xl lg:text-4xl text-glow-purple text-purple-glow tracking-wide">
@@ -371,15 +414,15 @@ export function Skills() {
         {/* Panel 1 — FRONTEND */}
         <PanelContent
           panel={skillPanels[0]}
-          style={{ left: "10%", top: "9%", width: "80%", height: "22.5%" }}
+          style={{ left: "10%", top: "10.5%", width: "80%", height: "22.5%" }}
           baseDelay={0.1}
           titleShiftPx="3.3vw"
           rowsShiftPx="-1.7vw"
           rowsShiftXPx="7.2vw"
           rowsCompact
-          rowsScale={0.77}
+          rowsScale={0.86}
           hideDiamonds={true}
-          titleFontSize="clamp(7px, 2.2vw, 11px)"
+          titleFontSize="clamp(8px, 2.5vw, 12px)"
         />
 
         {/* Panel 2 — BACKEND */}
@@ -387,9 +430,13 @@ export function Skills() {
           panel={skillPanels[1]}
           style={{ left: "10%", top: "39%", width: "80%", height: "22.5%" }}
           baseDelay={0.2}
+          titleShiftPx="3.3vw"
           rowsShiftPx="-1.7vw"
+          rowsShiftXPx="7.2vw"
           rowsCompact
-          titleFontSize="clamp(9px, 2.8vw, 13px)"
+          rowsScale={0.86}
+          hideDiamonds={true}
+          titleFontSize="clamp(8px, 2.5vw, 12px)"
         />
 
         {/* Panel 3 — TOOLS & MAGIC */}
@@ -397,10 +444,13 @@ export function Skills() {
           panel={skillPanels[2]}
           style={{ left: "10%", top: "63.5%", width: "80%", height: "22.5%" }}
           baseDelay={0.3}
-          titleShiftPx="-1.7vw"
+          titleShiftPx="3.3vw"
           rowsShiftPx="-1.7vw"
+          rowsShiftXPx="7.2vw"
           rowsCompact
-          titleFontSize="clamp(9px, 2.8vw, 13px)"
+          rowsScale={0.86}
+          hideDiamonds={true}
+          titleFontSize="clamp(8px, 2.5vw, 12px)"
         />
       </motion.div>
     </section>

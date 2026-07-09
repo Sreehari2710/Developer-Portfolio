@@ -43,6 +43,15 @@ export function Experience() {
         {/* ambient: embers drifting up from the cave floor */}
         <Embers left="10%" top="70%" width="80%" height="28%" color="#f97316" count={7} size={2.5} />
 
+        {/* ambient: ore veins glint in the cave walls */}
+        <GlowSpot left="12%" top="40%" size={80} color="rgba(239,68,68,0.4)" duration={4.6} anim="pulse" />
+        <GlowSpot left="4.7%" top="50%" size={70} color="rgba(96,165,250,0.4)" duration={5.4} delay={1.8} anim="pulse" />
+        <GlowSpot left="89%" top="34%" size={80} color="rgba(96,165,250,0.4)" duration={4.2} delay={0.9} anim="pulse" />
+        <GlowSpot left="90%" top="56%" size={70} color="rgba(239,68,68,0.4)" duration={5.8} delay={2.6} anim="pulse" />
+
+        {/* ambient: crystal cart shimmer */}
+        <GlowSpot left="6%" top="71%" size={90} color="rgba(96,165,250,0.45)" duration={3.6} anim="pulse" />
+
         {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -272,7 +281,7 @@ export function Experience() {
               <span
                 className="font-pixel tracking-widest"
                 style={{
-                  fontSize: "clamp(7px, 1.8vw, 10px)",
+                  fontSize: "clamp(6px, 1.6vw, 9px)",
                   color: RED,
                   textShadow: `0 0 10px ${RED}, 0 0 20px ${RED}66`,
                 }}
@@ -285,7 +294,7 @@ export function Experience() {
             <h3
               className="font-blocky text-white mb-[2%]"
               style={{
-                fontSize: "clamp(12px, 4vw, 24px)",
+                fontSize: "clamp(11px, 3.4vw, 20px)",
                 lineHeight: 1.2,
                 textShadow: `0 0 20px rgba(255,255,255,0.55), 0 0 40px ${RED}44`,
               }}
@@ -298,7 +307,7 @@ export function Experience() {
               <span
                 className="font-blocky"
                 style={{
-                  fontSize: "clamp(10px, 3vw, 18px)",
+                  fontSize: "clamp(9px, 2.6vw, 15px)",
                   color: RED,
                   textShadow: `0 0 12px ${RED}, 0 0 24px ${RED}66`,
                 }}
@@ -308,7 +317,7 @@ export function Experience() {
               <span
                 className="font-pixel"
                 style={{
-                  fontSize: "clamp(7px, 1.8vw, 10px)",
+                  fontSize: "clamp(6px, 1.6vw, 9px)",
                   color: "rgba(200,200,255,0.55)",
                 }}
               >
@@ -320,7 +329,7 @@ export function Experience() {
             <p
               className="font-pixel"
               style={{
-                fontSize: "clamp(7px, 1.9vw, 11px)",
+                fontSize: "clamp(6px, 1.7vw, 10px)",
                 lineHeight: 1.7,
                 color: "rgba(220,220,255,0.8)",
                 textShadow: "0 0 8px rgba(180,180,255,0.3)",
@@ -345,7 +354,7 @@ export function Experience() {
               <span
                 className="font-pixel tracking-widest"
                 style={{
-                  fontSize: "clamp(7px, 1.8vw, 10px)",
+                  fontSize: "clamp(6px, 1.6vw, 9px)",
                   color: BLUE,
                   textShadow: `0 0 10px ${BLUE}, 0 0 20px ${BLUE}66`,
                 }}
@@ -368,7 +377,7 @@ export function Experience() {
                   <span
                     style={{
                       color: BLUE,
-                      fontSize: "clamp(7px, 1.8vw, 10px)",
+                      fontSize: "clamp(6px, 1.6vw, 9px)",
                       marginTop: "1px",
                       flexShrink: 0,
                       textShadow: `0 0 8px ${BLUE}`,
@@ -379,7 +388,7 @@ export function Experience() {
                   <p
                     className="font-pixel"
                     style={{
-                      fontSize: "clamp(7px, 1.85vw, 10px)",
+                      fontSize: "clamp(6px, 1.65vw, 9px)",
                       lineHeight: 1.6,
                       color: "rgba(220,220,255,0.85)",
                       textShadow: "0 0 6px rgba(160,200,255,0.2)",

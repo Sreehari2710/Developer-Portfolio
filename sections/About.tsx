@@ -16,13 +16,13 @@ function AboutRowMobile({ stat }: { stat: (typeof aboutStats)[number] }) {
     >
       <p
         className="font-blocky tracking-wide leading-none"
-        style={{ color: stat.color, fontSize: "clamp(8px, 2.9vw, 13px)" }}
+        style={{ color: stat.color, fontSize: "clamp(7px, 2.4vw, 11px)" }}
       >
         {stat.label}
       </p>
       <p
         className="font-blocky text-foreground leading-[1.35] mt-1"
-        style={{ fontSize: "clamp(8px, 2.9vw, 13px)" }}
+        style={{ fontSize: "clamp(7px, 2.4vw, 11px)" }}
       >
         {stat.value}
       </p>
@@ -62,6 +62,14 @@ export function About() {
         <GlowSpot left="57%" top="40%" size={340} color="rgba(77,208,196,0.16)" duration={4.2} />
         <GlowSpot left="22%" top="35%" size={260} color="rgba(56,189,248,0.12)" duration={5.1} delay={0.8} />
         <Embers left="8%" top="30%" width="84%" height="55%" color="#4dd0c4" count={5} size={2} />
+
+        {/* ambient: garden lanterns flicker on both sides */}
+        <GlowSpot left="5%" top="49%" size={95} color="rgba(249,180,80,0.5)" duration={2.4} />
+        <GlowSpot left="83.5%" top="49.5%" size={95} color="rgba(249,180,80,0.5)" duration={3.1} delay={0.7} />
+
+        {/* ambient: portal crystals breathe — purple left, blue right */}
+        <GlowSpot left="11.2%" top="84.5%" size={110} color="rgba(168,85,247,0.5)" duration={3.8} anim="pulse" />
+        <GlowSpot left="87.7%" top="84.5%" size={110} color="rgba(56,189,248,0.5)" duration={3.8} delay={1.6} anim="pulse" />
 
         {/* heading overlay, on the image */}
         <div className="absolute" style={{ left: "5%", top: "4%" }}>

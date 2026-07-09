@@ -3,7 +3,8 @@
 // Deterministic pseudo-random so SSR and client render identical particles
 const rand = (i: number, salt: number) => ((i * 73 + salt * 31) % 97) / 97;
 
-/** A soft flickering point of light — torches, lanterns, braziers. */
+/** A soft flickering point of light — torches, lanterns, braziers.
+ *  anim "pulse" gives a slow magical breathing glow instead of fire flicker. */
 export function GlowSpot({
   left,
   top,
@@ -11,6 +12,7 @@ export function GlowSpot({
   color,
   duration = 2.4,
   delay = 0,
+  anim = "torch-flicker",
 }: {
   left: string;
   top: string;
@@ -18,7 +20,9 @@ export function GlowSpot({
   color: string;
   duration?: number;
   delay?: number;
+  anim?: "torch-flicker" | "pulse";
 }) {
+  const name = anim === "pulse" ? "lava-pulse" : "torch-flicker";
   return (
     <div
       className="fx-anim absolute rounded-full pointer-events-none"
@@ -30,7 +34,43 @@ export function GlowSpot({
         transform: "translate(-50%, -50%)",
         background: `radial-gradient(circle, ${color} 0%, transparent 70%)`,
         mixBlendMode: "screen",
-        animation: `torch-flicker ${duration}s ease-in-out ${delay}s infinite`,
+        animation: `${name} ${duration}s ease-in-out ${delay}s infinite`,
+      }}
+    />
+  );
+}
+
+/** A vertical beam of light rising from a bright source in the art. */
+export function LightRay({
+  left,
+  bottom,
+  height = "40%",
+  width = 46,
+  color,
+  duration = 5,
+  delay = 0,
+}: {
+  left: string;
+  bottom: string;
+  height?: string;
+  width?: number;
+  color: string;
+  duration?: number;
+  delay?: number;
+}) {
+  return (
+    <div
+      className="fx-anim absolute pointer-events-none"
+      style={{
+        left,
+        bottom,
+        height,
+        width,
+        transform: "translateX(-50%)",
+        background: `linear-gradient(to top, ${color}, transparent)`,
+        filter: "blur(12px)",
+        mixBlendMode: "screen",
+        animation: `ray-pulse ${duration}s ease-in-out ${delay}s infinite`,
       }}
     />
   );
