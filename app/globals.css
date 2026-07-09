@@ -27,7 +27,7 @@
   --font-body: var(--font-inter);
 }
 
-* {
+html {
   scroll-behavior: smooth;
 }
 

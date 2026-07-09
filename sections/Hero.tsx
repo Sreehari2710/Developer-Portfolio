@@ -78,7 +78,7 @@ export function Hero() {
           className="absolute left-6 md:left-16 top-[42%] md:top-[52%] -translate-y-1/2 max-w-xl"
         >
           <p className="text-foreground/90 text-base md:text-lg mb-2">Hi, I&apos;m</p>
-          <h1 className="font-blocky text-6xl md:text-7xl font-bold leading-[1.15] text-white tracking-wide">
+          <h1 className="font-blocky text-[clamp(40px,16.7vw,64px)] md:text-7xl font-bold leading-[1.15] text-white tracking-wide">
             {profile.name}
           </h1>
           <p className="font-blocky text-purple-glow text-glow-purple text-base md:text-lg mt-4 tracking-wide">

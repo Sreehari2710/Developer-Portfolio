@@ -15,12 +15,15 @@ function AboutRowMobile({ stat }: { stat: (typeof aboutStats)[number] }) {
       style={{ paddingLeft: "19%", paddingRight: "4%" }}
     >
       <p
-        className="font-blocky text-[10.5px] tracking-wide leading-none"
-        style={{ color: stat.color }}
+        className="font-blocky tracking-wide leading-none"
+        style={{ color: stat.color, fontSize: "clamp(8px, 2.9vw, 13px)" }}
       >
         {stat.label}
       </p>
-      <p className="font-blocky text-foreground text-[10.5px] leading-[1.35] mt-1">
+      <p
+        className="font-blocky text-foreground leading-[1.35] mt-1"
+        style={{ fontSize: "clamp(8px, 2.9vw, 13px)" }}
+      >
         {stat.value}
       </p>
     </div>
@@ -34,7 +37,7 @@ export function About() {
   const portalsMobileInView = useInView(portalsMobileRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="relative w-full bg-deep">
+    <section id="about" className="relative w-full bg-deep scroll-mt-[88px]">
       {/* ---------- Desktop (unchanged) ---------- */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -212,7 +215,7 @@ export function About() {
               key={stat.label}
               className="flex-1 w-full"
               style={{
-                transform: stat.icon === "quest" ? undefined : "translateY(6px)",
+                transform: stat.icon === "quest" ? undefined : "translateY(1.7vw)",
               }}
             >
               <AboutRowMobile stat={stat} />
@@ -243,20 +246,20 @@ export function About() {
             href={profile.github}
             target="_blank"
             rel="noreferrer"
-            className="absolute flex items-center justify-center gap-2 font-blocky text-foreground/90 hover:text-purple-glow transition-colors text-[13px]"
-            style={{ left: "21%", width: "28%", top: "10%", height: "80%" }}
+            className="absolute flex items-center justify-center gap-2 font-blocky text-foreground/90 hover:text-purple-glow transition-colors"
+            style={{ left: "21%", width: "28%", top: "10%", height: "80%", fontSize: "clamp(10px, 3.6vw, 16px)" }}
           >
-            <FaGithub size={19} />
+            <FaGithub style={{ width: "clamp(14px, 5.3vw, 24px)", height: "clamp(14px, 5.3vw, 24px)" }} />
             <span className="truncate">GitHub</span>
           </a>
           <a
             href={profile.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="absolute flex items-center justify-center gap-2 font-blocky text-foreground/90 hover:text-blue-glow transition-colors text-[13px]"
-            style={{ left: "51%", width: "28%", top: "10%", height: "80%" }}
+            className="absolute flex items-center justify-center gap-2 font-blocky text-foreground/90 hover:text-blue-glow transition-colors"
+            style={{ left: "51%", width: "28%", top: "10%", height: "80%", fontSize: "clamp(10px, 3.6vw, 16px)" }}
           >
-            <FaLinkedin size={19} />
+            <FaLinkedin style={{ width: "clamp(14px, 5.3vw, 24px)", height: "clamp(14px, 5.3vw, 24px)" }} />
             <span className="truncate">LinkedIn</span>
           </a>
         </div>

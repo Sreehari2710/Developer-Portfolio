@@ -24,6 +24,18 @@ export function NavBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // JS-driven scroll: reliable on mobile browsers where CSS smooth
+  // anchor scrolling from a fixed header is flaky
+  const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const el = document.querySelector(href);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", href);
+    }
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -51,7 +63,12 @@ export function NavBar() {
 
         <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-wide text-foreground/90 uppercase">
           {links.map((l) => (
-            <a key={l.label} href={l.href} className="hover:text-purple-glow transition-colors">
+            <a
+              key={l.label}
+              href={l.href}
+              onClick={(e) => handleNav(e, l.href)}
+              className="hover:text-purple-glow transition-colors"
+            >
               {l.label}
             </a>
           ))}
@@ -84,7 +101,7 @@ export function NavBar() {
                 <a
                   key={l.label}
                   href={l.href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => handleNav(e, l.href)}
                   className="font-blocky text-sm tracking-wide uppercase text-foreground/90 hover:text-purple-glow transition-colors py-3 border-b border-white/5 last:border-none"
                 >
                   {l.label}

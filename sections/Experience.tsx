@@ -13,13 +13,14 @@ export function Experience() {
   const exp = experiences[0];
 
   return (
-    <section id="experience" className="relative w-full bg-deep">
+    <section id="experience" className="relative w-full bg-deep scroll-mt-[88px]">
+      {/* ---------- Desktop (unchanged) ---------- */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-        className="relative w-full"
+        className="relative w-full hidden md:block"
         style={{ aspectRatio: "1700 / 925" }}
       >
         <Image
@@ -193,6 +194,192 @@ export function Experience() {
                     className="font-pixel"
                     style={{
                       fontSize: "clamp(7px, 0.62vw, 10px)",
+                      lineHeight: 1.6,
+                      color: "rgba(220,220,255,0.85)",
+                      textShadow: "0 0 6px rgba(160,200,255,0.2)",
+                    }}
+                  >
+                    {bullet}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* ---------- Mobile ---------- */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
+        className="relative w-full block md:hidden"
+        style={{ aspectRatio: "941 / 1672" }}
+      >
+        <Image
+          src="/expirience-mobile.png"
+          alt="Underground cave quest archive"
+          fill
+          className="object-cover pointer-events-none select-none"
+        />
+
+        {/* top fade */}
+        <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+
+        {/* ambient: wall torches + corner lanterns flicker on independent timings */}
+        <GlowSpot left="18.6%" top="15%" size={90} color="rgba(239,68,68,0.55)" duration={2.1} />
+        <GlowSpot left="81%" top="15%" size={90} color="rgba(249,115,22,0.5)" duration={2.7} delay={0.3} />
+        <GlowSpot left="5.5%" top="93%" size={100} color="rgba(249,115,22,0.45)" duration={3.2} delay={0.6} />
+        <GlowSpot left="94.5%" top="92.5%" size={100} color="rgba(249,115,22,0.45)" duration={2.5} delay={1.1} />
+
+        {/* ambient: embers drifting up from the cave floor */}
+        <Embers left="19%" top="72%" width="62%" height="22%" color="#f97316" count={6} size={2.5} />
+
+        {/* Section heading */}
+        <div className="absolute" style={{ left: "6%", top: "1.5%" }}>
+          <h2 className="font-blocky text-2xl text-glow-purple text-purple-glow tracking-wide">
+            05. EXPERIENCE
+          </h2>
+          <div className="flex items-center gap-2 mt-1">
+            <span className="h-px w-6" style={{ background: `${RED}80` }} />
+            <span
+              className="font-blocky text-[9px] tracking-widest"
+              style={{ color: RED }}
+            >
+              QUEST LOG
+            </span>
+            <span className="h-px w-6" style={{ background: `${RED}80` }} />
+          </div>
+        </div>
+
+        {/* Content — single column inside the central frame */}
+        <div
+          className="absolute flex flex-col"
+          style={{ left: "22%", top: "16%", width: "56%", height: "64%", gap: "2%" }}
+        >
+          {/* ── Company info (top block) ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="flex flex-col"
+            style={{ height: "34%" }}
+          >
+            {/* Quest badge */}
+            <div className="flex items-center gap-[5px] mb-[4%]">
+              <span
+                className="font-pixel tracking-widest"
+                style={{
+                  fontSize: "clamp(7px, 1.8vw, 10px)",
+                  color: RED,
+                  textShadow: `0 0 10px ${RED}, 0 0 20px ${RED}66`,
+                }}
+              >
+                ✦ QUEST ACTIVE ✦
+              </span>
+            </div>
+
+            {/* Role */}
+            <h3
+              className="font-blocky text-white mb-[2%]"
+              style={{
+                fontSize: "clamp(12px, 4vw, 24px)",
+                lineHeight: 1.2,
+                textShadow: `0 0 20px rgba(255,255,255,0.55), 0 0 40px ${RED}44`,
+              }}
+            >
+              {exp.role}
+            </h3>
+
+            {/* Company + duration */}
+            <div className="flex items-center gap-[8px] mb-[4%]">
+              <span
+                className="font-blocky"
+                style={{
+                  fontSize: "clamp(10px, 3vw, 18px)",
+                  color: RED,
+                  textShadow: `0 0 12px ${RED}, 0 0 24px ${RED}66`,
+                }}
+              >
+                @ {exp.company}
+              </span>
+              <span
+                className="font-pixel"
+                style={{
+                  fontSize: "clamp(7px, 1.8vw, 10px)",
+                  color: "rgba(200,200,255,0.55)",
+                }}
+              >
+                · {exp.duration}
+              </span>
+            </div>
+
+            {/* Summary */}
+            <p
+              className="font-pixel"
+              style={{
+                fontSize: "clamp(7px, 1.9vw, 11px)",
+                lineHeight: 1.7,
+                color: "rgba(220,220,255,0.8)",
+                textShadow: "0 0 8px rgba(180,180,255,0.3)",
+                width: "100%",
+              }}
+            >
+              {exp.summary}
+            </p>
+          </motion.div>
+
+          {/* ── Achievements (bottom block) ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-col"
+            style={{ height: "58%" }}
+          >
+            {/* Label — blue to match right frame */}
+            <div className="flex items-center gap-[5px] mb-[4%]">
+              <span
+                className="font-pixel tracking-widest"
+                style={{
+                  fontSize: "clamp(7px, 1.8vw, 10px)",
+                  color: BLUE,
+                  textShadow: `0 0 10px ${BLUE}, 0 0 20px ${BLUE}66`,
+                }}
+              >
+                ✦ ACHIEVEMENTS UNLOCKED ✦
+              </span>
+            </div>
+
+            {/* Bullets */}
+            <div className="flex flex-col gap-[3.5%]">
+              {exp.bullets.map((bullet, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.55 + i * 0.1 }}
+                  className="flex items-start gap-[6px]"
+                >
+                  <span
+                    style={{
+                      color: BLUE,
+                      fontSize: "clamp(7px, 1.8vw, 10px)",
+                      marginTop: "1px",
+                      flexShrink: 0,
+                      textShadow: `0 0 8px ${BLUE}`,
+                    }}
+                  >
+                    ▸
+                  </span>
+                  <p
+                    className="font-pixel"
+                    style={{
+                      fontSize: "clamp(7px, 1.85vw, 10px)",
                       lineHeight: 1.6,
                       color: "rgba(220,220,255,0.85)",
                       textShadow: "0 0 6px rgba(160,200,255,0.2)",

@@ -132,8 +132,8 @@ function SkillRow({
       <Icon
         style={{
           color: skill.color,
-          width: compact ? "clamp(12px, 1vw, 16px)" : "clamp(16px, 1.3vw, 20px)",
-          height: compact ? "clamp(12px, 1vw, 16px)" : "clamp(16px, 1.3vw, 20px)",
+          width: compact ? "clamp(11px, 3.4vw, 17px)" : "clamp(16px, 1.3vw, 20px)",
+          height: compact ? "clamp(11px, 3.4vw, 17px)" : "clamp(16px, 1.3vw, 20px)",
           flexShrink: 0,
           marginTop: "1px",
         }}
@@ -144,7 +144,7 @@ function SkillRow({
           <span
             className="font-pixel truncate"
             style={{
-              fontSize: compact ? "clamp(5px, 0.48vw, 7px)" : "clamp(6px, 0.58vw, 9px)",
+              fontSize: compact ? "clamp(5px, 1.4vw, 8px)" : "clamp(6px, 0.58vw, 9px)",
               color: "rgba(235,235,255,0.9)",
               lineHeight: 1,
             }}
@@ -154,7 +154,7 @@ function SkillRow({
           <span
             className="font-pixel shrink-0"
             style={{
-              fontSize: compact ? "clamp(4px, 0.42vw, 6px)" : "clamp(5px, 0.48vw, 7px)",
+              fontSize: compact ? "clamp(4px, 1.15vw, 7px)" : "clamp(5px, 0.48vw, 7px)",
               color: "#a855f7",
               lineHeight: 1,
             }}
@@ -188,17 +188,18 @@ function PanelContent({
   panel: SkillPanel;
   style: React.CSSProperties;
   baseDelay: number;
-  titleShiftPx?: number;
-  rowsShiftPx?: number;
-  rowsShiftXPx?: number;
+  titleShiftPx?: number | string;
+  rowsShiftPx?: number | string;
+  rowsShiftXPx?: number | string;
   rowsCompact?: boolean;
   rowsScale?: number;
   hideDiamonds?: boolean;
   titleFontSize?: string;
 }) {
+  const asLen = (v: number | string) => (typeof v === "number" ? `${v}px` : v);
   const rowsTransform = [
-    rowsShiftXPx ? `translateX(${rowsShiftXPx}px)` : "",
-    rowsShiftPx ? `translateY(${rowsShiftPx}px)` : "",
+    rowsShiftXPx ? `translateX(${asLen(rowsShiftXPx)})` : "",
+    rowsShiftPx ? `translateY(${asLen(rowsShiftPx)})` : "",
     rowsScale ? `scale(${rowsScale})` : "",
   ]
     .filter(Boolean)
@@ -216,7 +217,7 @@ function PanelContent({
         className="shrink-0 flex items-center justify-center gap-1"
         style={{
           height: "14%",
-          transform: titleShiftPx ? `translateY(${titleShiftPx}px)` : undefined,
+          transform: titleShiftPx ? `translateY(${asLen(titleShiftPx)})` : undefined,
         }}
       >
         {!hideDiamonds && (
@@ -277,7 +278,7 @@ function PanelContent({
 
 export function Skills() {
   return (
-    <section id="skills" className="relative w-full bg-deep">
+    <section id="skills" className="relative w-full bg-deep scroll-mt-[88px]">
       {/* ---------- Desktop (unchanged) ---------- */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -372,26 +373,23 @@ export function Skills() {
           panel={skillPanels[0]}
           style={{ left: "10%", top: "9%", width: "80%", height: "22.5%" }}
           baseDelay={0.1}
-          titleShiftPx={12}
-          rowsShiftPx={2}
-          rowsShiftXPx={26}
+          titleShiftPx="3.3vw"
+          rowsShiftPx="-1.7vw"
+          rowsShiftXPx="7.2vw"
           rowsCompact
           rowsScale={0.77}
           hideDiamonds={true}
-          titleFontSize="clamp(8px, 0.9vw, 11px)"
+          titleFontSize="clamp(7px, 2.2vw, 11px)"
         />
 
         {/* Panel 2 — BACKEND */}
         <PanelContent
           panel={skillPanels[1]}
-          style={{ left: "10%", top: "37.5%", width: "80%", height: "22.5%" }}
+          style={{ left: "10%", top: "39%", width: "80%", height: "22.5%" }}
           baseDelay={0.2}
-          rowsShiftPx={-12}
-          rowsShiftXPx={26}
+          rowsShiftPx="-1.7vw"
           rowsCompact
-          rowsScale={0.77}
-          hideDiamonds={true}
-          titleFontSize="clamp(8px, 0.9vw, 11px)"
+          titleFontSize="clamp(9px, 2.8vw, 13px)"
         />
 
         {/* Panel 3 — TOOLS & MAGIC */}
@@ -399,13 +397,10 @@ export function Skills() {
           panel={skillPanels[2]}
           style={{ left: "10%", top: "63.5%", width: "80%", height: "22.5%" }}
           baseDelay={0.3}
-          titleShiftPx={0}
-          rowsShiftPx={-6}
-          rowsShiftXPx={26}
+          titleShiftPx="-1.7vw"
+          rowsShiftPx="-1.7vw"
           rowsCompact
-          rowsScale={0.77}
-          hideDiamonds={true}
-          titleFontSize="clamp(8px, 0.9vw, 11px)"
+          titleFontSize="clamp(9px, 2.8vw, 13px)"
         />
       </motion.div>
     </section>
