@@ -416,7 +416,7 @@ export function Skills() {
           style={{ left: "10%", top: "9%", width: "80%", height: "22.5%" }}
           baseDelay={0.1}
           titleShiftPx="3.3vw"
-          rowsShiftPx="-1.7vw"
+          rowsShiftPx="-1vw"
           rowsShiftXPx="7.2vw"
           rowsCompact
           rowsScale={0.8}
@@ -444,7 +444,7 @@ export function Skills() {
           style={{ left: "10%", top: "62%", width: "80%", height: "22.5%" }}
           baseDelay={0.3}
           titleShiftPx="3.3vw"
-          rowsShiftPx="-1.7vw"
+          rowsShiftPx="-1vw"
           rowsShiftXPx="7.2vw"
           rowsCompact
           rowsScale={0.8}
