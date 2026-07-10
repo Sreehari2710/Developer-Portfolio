@@ -110,7 +110,7 @@ function PortalContent({
           className="pb-[6%]"
           style={
             mobile
-              ? { paddingLeft: "11%", marginTop: "0%" }
+              ? { paddingLeft: "11%", marginTop: "-2%" }
               : {
                   paddingLeft: project.id === "pathora" ? "6%" : "9%",
                   marginTop: project.id === "crm" ? "8%" : "7%",

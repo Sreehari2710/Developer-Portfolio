@@ -415,7 +415,7 @@ export function Skills() {
           panel={skillPanels[0]}
           style={{ left: "10%", top: "10.5%", width: "80%", height: "22.5%" }}
           baseDelay={0.1}
-          titleShiftPx="2vw"
+          titleShiftPx="1.2vw"
           rowsShiftPx="-1vw"
           rowsShiftXPx="7.2vw"
           rowsCompact
