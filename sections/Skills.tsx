@@ -413,7 +413,7 @@ export function Skills() {
         {/* Panel 1 — FRONTEND */}
         <PanelContent
           panel={skillPanels[0]}
-          style={{ left: "10%", top: "9%", width: "80%", height: "22.5%" }}
+          style={{ left: "10%", top: "10.5%", width: "80%", height: "22.5%" }}
           baseDelay={0.1}
           titleShiftPx="3.3vw"
           rowsShiftPx="-1vw"
@@ -429,7 +429,7 @@ export function Skills() {
           panel={skillPanels[1]}
           style={{ left: "10%", top: "37.5%", width: "80%", height: "22.5%" }}
           baseDelay={0.2}
-          titleShiftPx="3.3vw"
+          titleShiftPx="1.5vw"
           rowsShiftPx="-1.7vw"
           rowsShiftXPx="7.2vw"
           rowsCompact

@@ -110,7 +110,7 @@ function PortalContent({
           className="pb-[6%]"
           style={
             mobile
-              ? { paddingLeft: "7%", marginTop: "3%" }
+              ? { paddingLeft: "10%", marginTop: "1%" }
               : {
                   paddingLeft: project.id === "pathora" ? "6%" : "9%",
                   marginTop: project.id === "crm" ? "8%" : "7%",
@@ -272,7 +272,7 @@ export function Projects() {
         <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
 
         {/* Section heading */}
-        <div className="absolute" style={{ left: "6%", top: "1.5%" }}>
+        <div className="absolute" style={{ left: "6%", top: "0%" }}>
           <h2 className="font-blocky text-2xl text-glow-purple text-purple-glow tracking-wide">
             04. PROJECTS
           </h2>
