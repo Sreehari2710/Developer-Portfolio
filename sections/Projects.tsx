@@ -110,7 +110,7 @@ function PortalContent({
           className="pb-[6%]"
           style={
             mobile
-              ? { paddingLeft: "3%", marginTop: "1%" }
+              ? { paddingLeft: "7%", marginTop: "3%" }
               : {
                   paddingLeft: project.id === "pathora" ? "6%" : "9%",
                   marginTop: project.id === "crm" ? "8%" : "7%",
@@ -158,10 +158,10 @@ const portalFrames: React.CSSProperties[] = [
 
 // content boxes inside the 4 stacked frames of project-mobile.png
 const portalPositionsMobile: React.CSSProperties[] = [
-  { left: "20.5%", top: "7%", width: "59%", height: "16.5%" },
+  { left: "20.5%", top: "8.5%", width: "59%", height: "16.5%" },
   { left: "20.5%", top: "30%", width: "59%", height: "16.5%" },
-  { left: "20.5%", top: "53%", width: "59%", height: "16.5%" },
-  { left: "20.5%", top: "75.5%", width: "59%", height: "16.5%" },
+  { left: "20.5%", top: "54.5%", width: "59%", height: "16.5%" },
+  { left: "20.5%", top: "77%", width: "59%", height: "16.5%" },
 ];
 
 // glowing interiors of the 4 frames (for the energy swirl)
